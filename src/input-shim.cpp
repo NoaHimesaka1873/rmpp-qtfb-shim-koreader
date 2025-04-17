@@ -17,13 +17,13 @@
 #define RM1_DIGITIZER "/dev/input/event0"
 #define RM1_TOUCHSCREEN_2 "/dev/input/touchscreen0"
 
-#define RM1_MAX_DIGI_X 20967
-#define RM1_MAX_DIGI_Y 15725
+#define RM1_MAX_DIGI_X 11180
+#define RM1_MAX_DIGI_Y 15340
 #define RMPP_MAX_DIGI_X 11180
 #define RMPP_MAX_DIGI_Y 15340
 
-#define RM1_MAX_TOUCH_X 767
-#define RM1_MAX_TOUCH_Y 1023
+#define RM1_MAX_TOUCH_X 2064
+#define RM1_MAX_TOUCH_Y 2832
 #define RM1_MAX_PRESSURE 4095
 
 #define RM1_MAX_TOUCH_MAJOR 255

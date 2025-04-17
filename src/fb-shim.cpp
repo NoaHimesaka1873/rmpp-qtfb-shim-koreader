@@ -14,9 +14,9 @@
 #define BYTES_PER_PIXEL 2
 #define FILE_FB "/dev/fb0"
 
-#define SHIM_WIDTH RM1_WIDTH
-#define SHIM_HEIGHT RM1_HEIGHT
-#define FB_PROTOCOL FBFMT_RM2FB
+#define SHIM_WIDTH RMPP_WIDTH
+#define SHIM_HEIGHT RMPP_HEIGHT
+#define FB_PROTOCOL FBFMT_RMPP_RGB565
 
 #ifdef _32BITFIXEDINFO
 struct _32_bit_fb_fix_screeninfo {

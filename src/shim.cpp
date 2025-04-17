@@ -7,33 +7,8 @@
 #include "input-shim.h"
 #include <sys/mman.h>
 
-#define FAKE_MODEL "reMarkable 1.0"
-#define FILE_MODEL "/sys/devices/soc0/machine"
-
-int spoofModelFD() {
-    CERR << "Connected!" << std::endl;
-    int modelSpoofFD = memfd_create("Spoof Model Number", 0);
-    const char fakeModel[] = FAKE_MODEL;
-
-    if(modelSpoofFD == -1) {
-        CERR << "Failed to create memfd for model spoofing" << std::endl;
-    }
-
-    if(ftruncate(modelSpoofFD, sizeof(fakeModel) - 1) == -1) {
-        CERR << "Failed to truncate memfd for model spoofing: " << errno << std::endl;
-    }
-
-    write(modelSpoofFD, fakeModel, sizeof(fakeModel) - 1);
-    lseek(modelSpoofFD, 0, 0);
-    return modelSpoofFD;
-}
-
 static int (*realOpen)(const char *, int, mode_t) = (int (*)(const char *, int, mode_t)) dlsym(RTLD_NEXT, "open");
 inline int handleOpen(const char *fileName, int flags, mode_t mode) {
-    if(strcmp(fileName, FILE_MODEL) == 0) {
-        return spoofModelFD();
-    }
-
     int status;
     if((status = fbShimOpen(fileName)) != INTERNAL_SHIM_NOT_APPLICABLE) {
         return status;
